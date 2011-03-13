@@ -9,10 +9,10 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: crosstalk-ws_development
+  database: ct_dev 
   pool: 5
   username: root
-  password:
+  password: p@ssw0rd
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -22,10 +22,10 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: crosstalk-ws_test
+  database: ct_test
   pool: 5
   username: root
-  password:
+  password: p@ssw0rd
   socket: /var/run/mysqld/mysqld.sock
 
 production:
