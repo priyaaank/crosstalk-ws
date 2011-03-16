@@ -1,5 +1,7 @@
 class QuestionsController < ApplicationController
 
+  skip_before_filter :verify_authenticity_token, :only => [:create]
+
   def index
     all_questions = Question.find(:all)
     respond_to do |format|
@@ -14,7 +16,9 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    new_question = Question.new(params[:question])
+    new_question = Question.new(:title => params[:question_title].try(:strip), 
+                                :text => params[:question_text].try(:strip), 
+                                :asked_date => Time.now)
     new_question.save
 
     respond_to do |format|
