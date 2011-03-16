@@ -13,4 +13,19 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def create
+    new_question = Question.new(params[:question])
+    new_question.save
+
+    respond_to do |format|
+      format.json do 
+        render :json => new_question , :status => 200
+      end
+
+      format.xml do
+        render :xml => new_question, :status => 200
+      end
+    end
+  end
+
 end

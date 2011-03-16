@@ -18,4 +18,18 @@ describe QuestionsController do
     end
   end
 
+  describe "POST to create" do
+    it "should create a new question" do
+      mock_question = Factory.build(:question, :title => "New Question")
+      mock_question.stub!(:save).and_return(true)
+      Question.should_receive(:new).with(hash_including({:title => "New Question", :text => "Some random text"})).and_return(mock_question)
+
+      post :create, :question => {:title => "New Question", :text => "Some random text"}
+      response.should be_success
+      puts response.body
+      json_response = ActiveSupport::JSON.decode(response.body)
+      json_response["question"]["title"].should == "New Question"
+    end
+  end
+
 end
